@@ -10,7 +10,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to De Wet's React App</h2>
         </div>
-        <Input addNumber={this._addNumber.bind(this)} />
+        <AccountInput addNumber={this._addNumber.bind(this)} />
         <Output startingNumber={this.state.startingNumber} />
       </div>
     );
@@ -31,18 +31,13 @@ class App extends Component {
 
 export default App;
 
-class Input extends Component {
+class AccountInput extends Component {
   render() {
     return (
-      <form className="InputForm" onChange={this._handleSubmit.bind(this)} >
-        <label>This is my input box</label>
+      <form className="App" onChange={this._handleSubmit.bind(this)} >
+        <label>Account Balance</label>
         <div className="input-field">
-          <input placeholder="Starting Number:" ref={(input) => this._number = input} />
-        </div>
-        <div className="input-form-actions">
-          <button type="submit">
-            Submit Number
-          </button>
+          <input placeholder="Starting Number:" ref={(input) => this._balance = input} />
         </div>
       </form>
     );
@@ -51,9 +46,9 @@ class Input extends Component {
   _handleSubmit(event) {
     event.preventDefault();
     
-    let number = this._number;
+    let balance = this._balance;
 
-    this.props.addNumber(number.value);
+    this.props.addNumber(balance.value);
   }
 }
 
@@ -61,7 +56,7 @@ class Output extends Component {
   render() {
     return (
       <div className="App">
-        <h2>This is my output: {this.props.startingNumber}</h2>
+        <h2>Remaining Balance: {this.props.startingNumber}</h2>
       </div>
     );
   }
